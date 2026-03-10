@@ -232,6 +232,15 @@ function copy_listener_dist {
     info_msg "Copied listener distribution files to dist"
 }
 
+
+function install_prerequisites {
+    info_msg "Installing system prerequisites (nasm, clang, llvm)..."
+    sudo apt update && sudo apt install nasm clang llvm -y || error_exit "Failed to install prerequisites"
+    info_msg "Prerequisites installed successfully"
+}
+
+install_prerequisites
+
 # Execute actions based on ACTION parameter
 case $ACTION in
     all)
